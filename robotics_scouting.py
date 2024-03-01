@@ -7,6 +7,7 @@ from io import BytesIO
 
 
 # with match number and team position get robot number
+@st.cache_data(show_spinner=False)
 def generate_csv(
     scouter_initials,
     match_number,
@@ -41,11 +42,13 @@ def generate_csv(
     return csv_content
 
 
+@st.cache_data(show_spinner=False)
 def extract_numbers(string):
     numbers = re.findall(r"\d+", string)
     return [int(num) for num in numbers][0]
 
 
+@st.cache_data(show_spinner=False)
 def get_robo(event, match_level, match_number, robot):
     api_key = "3hJGWwBnRwxPVXtFiThp8n1dEuuMgcOg0xMLm41dPNsgIbL7mKpeAZF11bTaUWR7"
     tba = tbapy.TBA(api_key)
@@ -61,6 +64,7 @@ def get_robo(event, match_level, match_number, robot):
     return team_list[index]
 
 
+@st.cache_data(show_spinner=False)
 def main():
     st.set_page_config(layout="wide")
     st.title("Scouting")
